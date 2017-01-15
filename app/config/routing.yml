@@ -1,0 +1,8 @@
+oferta:
+    resource: "@OfertaBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+pagina_ayuda:
+   pattern: /ayuda
+   defaults: { _controller: OfertaBundle:Default:ayuda }
