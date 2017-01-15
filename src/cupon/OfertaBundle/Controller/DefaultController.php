@@ -15,4 +15,13 @@ class DefaultController extends Controller
         return $this->render('OfertaBundle:Default:index.html.twig', array('name' => 'luciano'));
     }
     
+    public function portadaAction(){
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$admin = $em->find('UsuarioBundle:Usuario', 1);
+    	
+    	return new Response("<h2><center> Bienvenidos al mi sitio - 
+    			".$admin->getNombre()." ".$admin->getApellidos()."</center></h2>");
+    	
+    }
+    
 }

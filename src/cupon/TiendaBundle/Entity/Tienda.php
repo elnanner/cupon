@@ -3,6 +3,7 @@
 namespace cupon\TiendaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use cupon;
 
 /**
  * Tienda
@@ -71,9 +72,8 @@ class Tienda
     private $direccion;
 
     /**
-     * @var integer
      *
-     * @ORM\Column(name="ciudad", type="integer")
+     * @ORM\ManyToOne(targetEntity="cupon\CiudadBundle\Entity\Ciudad")
      */
     private $ciudad;
 
@@ -250,12 +250,9 @@ class Tienda
     }
 
     /**
-     * Set ciudad
-     *
-     * @param integer $ciudad
-     * @return Tienda
+     * 
      */
-    public function setCiudad($ciudad)
+    public function setCiudad(cupon\CiudadBundle\Entity\Ciudad $ciudad)
     {
         $this->ciudad = $ciudad;
     

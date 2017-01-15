@@ -113,9 +113,8 @@ class Oferta
     private $ciudad;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="tienda", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="cupon\CiudadBundle\Entity\Ciudad")
      */
     private $tienda;
 

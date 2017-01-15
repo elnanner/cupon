@@ -3,6 +3,7 @@
 namespace cupon\UsuarioBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use cupon;
 
 /**
  * Usuario
@@ -73,14 +74,14 @@ class Usuario
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_alta", type="datetimetz")
+     * @ORM\Column(name="fecha_alta", type="datetime")
      */
     private $fechaAlta;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_nacimiento", type="datetimetz")
+     * @ORM\Column(name="fecha_nacimiento", type="datetime")
      */
     private $fechaNacimiento;
 
@@ -99,9 +100,7 @@ class Usuario
     private $numeroTarjeta;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ciudad", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="cupon\CiudadBundle\Entity\Ciudad")
      */
     private $ciudad;
 
@@ -372,10 +371,8 @@ class Usuario
     /**
      * Set ciudad
      *
-     * @param string $ciudad
-     * @return Usuario
      */
-    public function setCiudad($ciudad)
+    public function setCiudad(cupon\CiudadBundle\Entity\Ciudad $ciudad)
     {
         $this->ciudad = $ciudad;
     
