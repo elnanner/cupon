@@ -3,6 +3,8 @@
 namespace cupon\OfertaBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * OfertaRepository
@@ -15,13 +17,14 @@ class OfertaRepository extends EntityRepository
 	
 	public function findOfertaDelDia($ciudad)
 	{
-		$fechaPublicacion = new \DateTime('today');
-		$fechaPublicacion->setTime(23, 59, 59);
 		$em = $this->getEntityManager();
-		$dql = 'SELECT o FROM OfertaBundle:Oferta o WHERE o.ciudad = :ciudad';
-		
-		$consulta = $em->createQuery($dql);
+		$consulta = $em->createQuery('
+            SELECT o
+            FROM OfertaBundle:Oferta o Join o.ciudad c
+			WHERE c.slug = :ciudad
+        ');
 		$consulta->setParameter('ciudad', $ciudad);
-		return $consulta->getSingleResult();
+		$consulta->setMaxResults(1);
+		return $consulta->getOneOrNullResult();
 	}
 }

@@ -1,17 +1,17 @@
-backend:
-    resource: "@BackendBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-usuario:
-    resource: "@UsuarioBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-tienda:
-    resource: "@TiendaBundle/Controller/"
-    type:     annotation
-    prefix:   /
+#backend:
+#    resource: "@BackendBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+#
+#usuario:
+#    resource: "@UsuarioBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+#
+#tienda:
+#    resource: "@TiendaBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
 
 ciudad:
     resource: "@CiudadBundle/Controller/"
@@ -36,6 +36,9 @@ _pagina_estatica:
    
 #ruta para la portada principal#
 portada:
-   pattern: /portada
+   pattern: /{ciudad}
    defaults: { _controller: OfertaBundle:Default:portada }
    
+_portada:
+   pattern: /
+   defaults: { _controller: OfertaBundle:Default:portada }

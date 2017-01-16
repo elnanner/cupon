@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
 class DefaultController extends Controller
@@ -15,18 +16,19 @@ class DefaultController extends Controller
         return $this->render('OfertaBundle:Default:index.html.twig', array('name' => 'luciano'));
     }
     
-    public function portadaAction(){
-    	/*$em = $this->getDoctrine()->getEntityManager();
-    	$admin = $em->find('UsuarioBundle:Usuario', 1);
+    public function portadaAction($ciudad){
     	
-    	return new Response("<h2><center> Bienvenidos al mi sitio - 
-    			".$admin->getNombre()." ".$admin->getApellidos()."</center></h2>");
-    	*/
-    	//al siguiente template se accede porque es "global" digamos Resources/views/
-    	
-    	$em = $this->getDoctrine()->getManager();
-    	$oferta = $em->getRepository('OfertaBundle:Oferta')->findOfertaDelDia(1);
-    	return  $this->render('portada.html.twig', array('oferta'=>$oferta));
+		$em = $this->getDoctrine()->getManager();
+		$oferta = $em->getRepository('OfertaBundle:Oferta')->findOfertaDelDia($ciudad);
+		if (!$oferta) {
+			throw $this->createNotFoundException(
+					'No se ha encontrado la oferta del día'
+					);
+		}
+			return $this->render('OfertaBundle:Default:portada.html.twig', array(
+					'oferta' => $oferta
+			));
+		
     }
     
     public function pedidoAction(){

@@ -73,16 +73,16 @@ class Oferta
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_publicacion", type="datetimetz")
+     * @ORM\Column(name="fecha_publicacion", type="datetime")
      */
-    private $fechaPublicacion;
+    private $fecha_publicacion;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_expiracion", type="datetimetz")
+     * @ORM\Column(name="fecha_expiracion", type="datetime")
      */
-    private $fechaExpiracion;
+    private $fecha_expiracion;
 
     /**
      * @var integer

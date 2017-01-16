@@ -164,24 +164,24 @@ class Usuario
     /**
      * Set emailk
      *
-     * @param string $emailk
+     * @param string $email
      * @return Usuario
      */
-    public function setEmailk($emailk)
+    public function setEmail($email)
     {
-        $this->emailk = $emailk;
+        $this->email = $email;
     
         return $this;
     }
 
     /**
-     * Get emailk
+     * Get email
      *
      * @return string 
      */
-    public function getEmailk()
+    public function getEmail()
     {
-        return $this->emailk;
+        return $this->email;
     }
 
     /**
