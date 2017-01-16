@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new cupon\CiudadBundle\CiudadBundle(),
             new cupon\TiendaBundle\TiendaBundle(),
             new cupon\UsuarioBundle\UsuarioBundle(),
+            new cupon\BackendBundle\BackendBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
