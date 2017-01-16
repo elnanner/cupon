@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class OfertaRepository extends EntityRepository
 {
+	
+	public function findOfertaDelDia($ciudad)
+	{
+		$fechaPublicacion = new \DateTime('today');
+		$fechaPublicacion->setTime(23, 59, 59);
+		$em = $this->getEntityManager();
+		$dql = 'SELECT o FROM OfertaBundle:Oferta o WHERE o.ciudad = :ciudad';
+		
+		$consulta = $em->createQuery($dql);
+		$consulta->setParameter('ciudad', $ciudad);
+		return $consulta->getSingleResult();
+	}
 }

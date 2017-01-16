@@ -105,6 +105,7 @@ class Tienda
      * Get nombre
      *
      * @return string 
+     * 
      */
     public function getNombre()
     {
@@ -267,5 +268,9 @@ class Tienda
     public function getCiudad()
     {
         return $this->ciudad;
+    }
+    
+    public function __toString(){
+    	return $this->getNombre();
     }
 }

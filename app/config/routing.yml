@@ -1,3 +1,8 @@
+backend:
+    resource: "@BackendBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 usuario:
     resource: "@UsuarioBundle/Controller/"
     type:     annotation
@@ -33,3 +38,4 @@ _pagina_estatica:
 portada:
    pattern: /portada
    defaults: { _controller: OfertaBundle:Default:portada }
+   
