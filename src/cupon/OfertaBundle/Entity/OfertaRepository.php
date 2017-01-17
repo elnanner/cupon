@@ -23,6 +23,7 @@ class OfertaRepository extends EntityRepository
             FROM OfertaBundle:Oferta o Join o.ciudad c
 			WHERE c.slug = :ciudad
         ');
+		
 		$consulta->setParameter('ciudad', $ciudad);
 		$consulta->setMaxResults(1);
 		return $consulta->getOneOrNullResult();

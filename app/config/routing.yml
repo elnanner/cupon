@@ -1,17 +1,17 @@
-#backend:
-#    resource: "@BackendBundle/Controller/"
-#    type:     annotation
-#    prefix:   /
-#
-#usuario:
-#    resource: "@UsuarioBundle/Controller/"
-#    type:     annotation
-#    prefix:   /
-#
-#tienda:
-#    resource: "@TiendaBundle/Controller/"
-#    type:     annotation
-#    prefix:   /
+backend:
+    resource: "@BackendBundle/Controller/"
+    type:     annotation
+    prefix:   /backend
+
+usuario:
+    resource: "@UsuarioBundle/Controller/"
+    type:     annotation
+    prefix:   /usuario
+
+tienda:
+    resource: "@TiendaBundle/Controller/"
+    type:     annotation
+    prefix:   /tienda
 
 ciudad:
     resource: "@CiudadBundle/Controller/"
@@ -33,12 +33,9 @@ pagina_estatica:
 _pagina_estatica:
    pattern: /sitio/{pagina}/
    defaults: { _controller: OfertaBundle:Sitio:estatica }
-   
+
 #ruta para la portada principal#
 portada:
-   pattern: /{ciudad}
-   defaults: { _controller: OfertaBundle:Default:portada }
+   pattern: /{ciudad}                                     #aca debajo establecemos la ciudad por defecto#
+   defaults: { _controller: OfertaBundle:Default:portada, ciudad:'%cupon.ciudad_por_defecto%' }
    
-_portada:
-   pattern: /
-   defaults: { _controller: OfertaBundle:Default:portada }
