@@ -29,11 +29,10 @@ class DefaultController extends Controller
 		
     }
     
-    public function pedidoAction(){
-    	$req = $this->getRequest()->hasSession();
-    	$respuesta = new Response();
-    	$respuesta->setContent(var_dump($req));
-    	return $respuesta->sendContent();//new Response(var_dump($req));
+    public function pedidoAction($ciudad){
+    	
+    	return null;
+     
     }
     
     
@@ -46,6 +45,6 @@ class DefaultController extends Controller
      		'oferta' => $oferta	,
      		'relacionadas' => $relacionadas
      	));
-		echo $oferta->getTienda();
+		
     }
 }
