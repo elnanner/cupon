@@ -35,4 +35,15 @@ class DefaultController extends Controller
     	$respuesta->setContent(var_dump($req));
     	return $respuesta->sendContent();//new Response(var_dump($req));
     }
+    
+    
+    public function ofertaAction($ciudad, $slug){
+    	$em = $this->getDoctrine()->getManager();
+    	$oferta = $em->getRepository('OfertaBundle:Oferta')
+    			->findOferta($ciudad, $slug);
+     	return $this->render('OfertaBundle:Default:detalle.html.twig', array(
+     		'oferta' => $oferta	
+     	));
+		echo $oferta->getTienda();
+    }
 }
