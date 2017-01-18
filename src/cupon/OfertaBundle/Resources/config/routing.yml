@@ -1,0 +1,8 @@
+oferta:
+   pattern: /{ciudad}/ofertas/{slug}
+   defaults: { _controller: OfertaBundle:Default:oferta }
+
+ciudad_recientes:
+   pattern: /{ciudad}/recientes
+   defaults: { _controller: CiudadBundle:Default:recientes }
+   

@@ -39,4 +39,17 @@ class DefaultController extends Controller
     			array('ciudadActual' => $ciudad, 'ciudades' => $ciudades ));
     }
     
+    
+    public function recientesAction($ciudad){
+    	$em = $this->getDoctrine()->getManager();
+    	$ciudad = $em->getRepository('CiudadBundle:Ciudad')
+    	->findOneBySlug($ciudad);
+    	$ofertas = $em->getRepository("OfertaBundle:Oferta")->findAll();
+    	$recientes = $em->getRepository('OfertaBundle:Oferta')->findRecientes($ciudad->getId());
+    	return $this->render('CiudadBundle:Default:recientes.html.twig', array(
+    			'ciudad' => $ciudad	,
+    			'recientes' => $recientes,
+    			'ofertas' => $ofertas
+    	));
+    }
 }

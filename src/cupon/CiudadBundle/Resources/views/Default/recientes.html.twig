@@ -1,0 +1,28 @@
+{% extends "::frontend.html.twig" %}
+
+{% block title %}
+	Ofertas Recientes en {{ ciudad.nombre }}
+{% endblock title %}
+
+{% block id 'recientes' %}
+	{% block article %}
+		<h1>Ofertas recientes en <strong>{{ ciudad.nombre }}</strong></h1>
+        {% for oferta in ofertas %}
+       		 {% include 'OfertaBundle:Default:includes/minioferta.html.twig' %}
+        {% else %}
+        	<p>Esta ciudad todavía no ha publicado ninguna oferta</p>
+        {% endfor %}
+    {% endblock %}
+{% block aside %}
+    {{ parent() }}
+	<section id="cercanas">
+		<h2>Ofertas en otras ciudades</h2>
+		<ul>
+            {% for of in ofertas %}
+           
+				<li><a href="{{ path('oferta', { 'ciudad': ciudad.slug , 'slug': of.slug})
+                        }}">{{ of.nombre }}</a></li>
+            {% endfor %}
+		</ul>
+	</section>
+{% endblock %}

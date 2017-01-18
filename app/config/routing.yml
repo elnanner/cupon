@@ -18,9 +18,11 @@ ciudad:
     type:     annotation
     prefix:   /ciudad
 
+#Oferta va a usar enrutamiento con yml a diferencia de los demas
 oferta:
-    pattern: /{ciudad}/ofertas/{slug}
-    defaults: { _controller: OfertaBundle:Default:oferta }
+   resource: "@OfertaBundle/Resources/config/routing.yml"
+   prefix: /
+    
 
 pagina_ayuda:
    pattern: /ayuda

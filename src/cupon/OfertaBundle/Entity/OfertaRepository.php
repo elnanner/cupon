@@ -58,4 +58,16 @@ class OfertaRepository extends EntityRepository
 		$consulta->setMaxResults(5);//esto sirve para paginar
 		return $consulta->getResult();
 	}
+	
+	public function findRecientes($ciudad_id){
+		$em = $this->getEntityManager();
+		$query = 'SELECT o
+				  	FROM OfertaBundle:Oferta o
+					JOIN o.tienda t
+					WHERE o.ciudad = :id';
+		$consulta = $em->createQuery($query);
+		$consulta->setParameter('id', $ciudad_id);
+		$consulta->setMaxResults(5);//esto sirve para paginar
+		return $consulta->getResult();
+	}
 }
