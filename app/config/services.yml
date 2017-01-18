@@ -1,0 +1,8 @@
+#Configuracion global de los servicios de la aplicacion
+#Agregamos extensiones para twig
+
+services:
+   twig.extension.cupon:
+      class: cupon\OfertaBundle\Twig\Extension\CuponExtension
+      tags:
+         - { name: twig.extension }
