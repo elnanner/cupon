@@ -11,7 +11,7 @@ usuario:
 tienda:
     resource: "@TiendaBundle/Controller/"
     type:     annotation
-    prefix:   /tienda
+    prefix:   /
 
 ciudad:
     resource: "@CiudadBundle/Controller/"
