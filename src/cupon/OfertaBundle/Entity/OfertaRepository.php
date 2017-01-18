@@ -45,4 +45,17 @@ class OfertaRepository extends EntityRepository
  		$consulta->setParameter('slug', $slug);
 		return $consulta->getSingleResult();
 	}
+	
+	/*devuelve las ofertas relacionadas a una ciudad*/
+	public function findRelacionadas($ciudad){
+		$em = $this->getEntityManager();
+		$query = 'SELECT o
+				  	FROM OfertaBundle:Oferta o
+					JOIN o.ciudad c
+					WHERE c.slug != :ciudad';
+		$consulta = $em->createQuery($query);
+		$consulta->setParameter('ciudad', $ciudad);
+		$consulta->setMaxResults(5);//esto sirve para paginar
+		return $consulta->getResult();
+	}
 }
