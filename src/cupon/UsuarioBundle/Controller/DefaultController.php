@@ -3,17 +3,43 @@
 namespace cupon\UsuarioBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\SecurityContext;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/hello/{name}")
-     * @Template()
-     */
-    public function indexAction($name)
-    {
-        return array('name' => $name);
+    public function comprasAction(){
+    	$usuario_id = 1;
+    	$em = $this->getDoctrine();
+    	$compras = $em->getRepository('UsuarioBundle:Usuario')
+    					->findTodasLasCompras($usuario_id);
+    	return $this->render('UsuarioBundle:Default:compras.html.twig', 
+    			array('compras' => $compras));
+    }
+    
+    public function loginAction(){
+    	$peticion = $this->getRequest();
+		$sesion = $peticion->getSession();
+		$error = $peticion->attributes->get(
+			SecurityContext::AUTHENTICATION_ERROR,
+			$sesion->get(SecurityContext::AUTHENTICATION_ERROR));
+		
+		return $this->render('UsuarioBundle:Default:login.html.twig', array(
+			'last_username' => $sesion->get(SecurityContext::LAST_USERNAME),
+			'error' => $error
+		));
+    }
+    
+    public function cajaLoginAction(){
+    	$peticion = $this->getRequest();
+		$sesion = $peticion->getSession();
+		$error = $peticion->attributes->get(
+			SecurityContext::AUTHENTICATION_ERROR,
+			$sesion->get(SecurityContext::AUTHENTICATION_ERROR));
+		
+		return $this->render('UsuarioBundle:Default:cajaLogin.html.twig', array(
+			'last_username' => $sesion->get(SecurityContext::LAST_USERNAME),
+			'error' => $error
+		));
     }
 }

@@ -4,8 +4,7 @@ backend:
     prefix:   /backend
 
 usuario:
-    resource: "@UsuarioBundle/Controller/"
-    type:     annotation
+    resource: "@UsuarioBundle/Resources/config/routing.yml"
     prefix:   /usuario
 
 tienda:

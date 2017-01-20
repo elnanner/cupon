@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class UsuarioRepository extends EntityRepository
 {
+	
+	/*devuelve las compras de un usuario a traves de su id*/
+	public function findTodasLasCompras($id){
+		$em = $this->getEntityManager();
+		$consulta = $em->createQuery('SELECT v, o, t 
+				FROM OfertaBundle:Venta v
+				JOIN v.oferta o
+				JOIN o.tienda t
+				WHERE v.usuario = :id
+				ORDER BY v.fecha DESC');
+		$consulta->setParameter('id', $id);
+		return $consulta->getResult();
+		
+	}
 }

@@ -4,5 +4,5 @@ oferta:
 
 ciudad_recientes:
    pattern: /{ciudad}/recientes
-   defaults: { _controller: CiudadBundle:Default:recientes }
+   defaults: { _controller: CiudadBundle:Default:recientes , ciudad:'%cupon.ciudad_por_defecto%'}
    
