@@ -7,6 +7,7 @@
 {% block article %}
     {% if error %}
     	<div>{{ error.message }}</div>
+    	
     {% endif %}
     <form action="{{ path('usuario_login_check') }}" method="post">
    		<label for="username">Usuario:</label>

@@ -5,6 +5,7 @@ namespace cupon\UsuarioBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\SecurityContext;
+use cupon\UsuarioBundle\Entity\Usuario;
 
 class DefaultController extends Controller
 {
@@ -14,7 +15,7 @@ class DefaultController extends Controller
     	$compras = $em->getRepository('UsuarioBundle:Usuario')
     					->findTodasLasCompras($usuario_id);
     	return $this->render('UsuarioBundle:Default:compras.html.twig', 
-    			array('compras' => $compras));
+    			array('compras' => $compras, 'usuario'=>$this->getUser()));
     }
     
     public function loginAction(){
@@ -42,4 +43,14 @@ class DefaultController extends Controller
 			'error' => $error
 		));
     }
+    
+    public function defaultAction()
+    {
+    	$usuario = new Usuario();
+    	$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+    	
+    	$password = $encoder->encodePassword('luciano', $usuario->getSalt());
+    	$usuario->setPassword($password);
+    }
+    
 }

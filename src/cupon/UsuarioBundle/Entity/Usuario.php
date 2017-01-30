@@ -388,7 +388,12 @@ class Usuario implements UserInterface
     public function getCiudad()
     {
         return $this->ciudad;
-    }
+    }	
+    public function __toString()
+    {
+    	return $this->getNombre()." ".$this->getApellidos();
+    }
+    
 	/**
 	 * {@inheritDoc}
 	 * @see \Symfony\Component\Security\Core\User\UserInterface::getRoles()
@@ -415,6 +420,7 @@ class Usuario implements UserInterface
 		// TODO: Auto-generated method stub
 		
 	}
+	
 	
 
 }
